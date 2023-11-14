@@ -2,3 +2,45 @@
   While True is True.
   The while loop will run as long as the conditional expression evaluates to True.
   Since True always evaluates to True, the loop will run indefinitely, until something within the loop returns or breaks.
+
+2. Time complexity and space complexity
+Complexity of an algorithm is a measure of the amount of time and/or space required by an algorithm for an 
+input of a given size e.g. N. Unless otherwise stated, the term complexity always refers to the worst-case 
+complexity (i.e. the highest possible time/space taken by the program/algorithm to process an input).
+
+Linear search [Time complexity: O(n), space complexity: O(1)]
+Binary search: Card search [Time complexity: O(log n),]
+
+def position_check(cards, query, mid):
+    if cards[mid] == query:
+        # Here only consider mid - 1 because we want to find the min position of the same number
+        if mid-1 >= 0 and cards[mid-1] == query:
+            return 'left'
+        else:
+            return 'found'
+    elif cards[mid] < query:
+            return 'left'
+    else:
+        return 'right'
+    
+def locate_card(cards, query):
+    lo, hi = 0, len(cards)-1
+
+    while lo <= hi:   # make mistake, to include the case where cards is empty
+        mid = (lo + hi)//2
+        mid_number = cards[mid]
+        result = position_check(cards, query, mid)
+        
+        if result == 'found':
+            return mid
+        # If mid_number < query, it means it is impossible for query to locate at right side
+        # Therefore, bring the high to mid - 1
+        elif result == 'left':
+            hi = mid - 1
+        # Same reasoning to bring up the low
+        else:
+            lo = mid + 1
+    return -1
+    
+
+
