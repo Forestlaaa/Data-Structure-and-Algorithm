@@ -1,0 +1,4 @@
+1. While True? While what is True
+  While True is True.
+  The while loop will run as long as the conditional expression evaluates to True.
+  Since True always evaluates to True, the loop will run indefinitely, until something within the loop returns or breaks.
